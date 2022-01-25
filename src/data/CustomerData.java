@@ -9,4 +9,8 @@ public class CustomerData implements Serializable {
     public String name;
     public INotification broadcast;
 
+    public CustomerData(String name, INotification broadcaster){
+        this.name = name;
+        this.broadcast = broadcaster;
+    }
 }

@@ -34,7 +34,7 @@ public class Terminal extends JFrame {
 
         this.panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(panel);
 
         this.txtMessage = new JTextArea(15,50);
@@ -52,7 +52,7 @@ public class Terminal extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                getAndClearInput();
+                readAndClearInput();
 
             }});
 
@@ -72,7 +72,7 @@ public class Terminal extends JFrame {
     }
 
 
-    public void getAndClearInput() {
+    public void readAndClearInput() {
         command = this.input.getText();
         input.setText("");
     }
@@ -106,10 +106,15 @@ public class Terminal extends JFrame {
     public void setMsg(String s) {
         append(s);
         this.txtMessage.setText(this.msgs);
+        refresh();
     }
 
     public void refresh() {
         txtMessage.update(txtMessage.getGraphics());
+    }
+
+    public void errMsg(String msg){
+        setMsg(msg);
     }
 
 }
